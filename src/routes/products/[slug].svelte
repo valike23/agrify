@@ -55,6 +55,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="{product.images.featured_image}" />
   <meta property="og:site" content="https://agrify2.herokuapp.com" />
+  <meta name="description" content="{product.description}">
+  <meta property="og:description" content="{product.description}">
   <meta property="og:url" content="https://agrify2.herokuapp.com/product/${product._id}" />
 </svelte:head>
 <div id="root">
