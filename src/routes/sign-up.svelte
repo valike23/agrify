@@ -52,7 +52,8 @@ const submit = async () => {
   <meta property="og:title" content="Agrify Registration Page" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="assets/logo.svg" />
-<meta property="og:url" content="https://www.agrify.africa/" />
+<meta property="og:site" content="https://agrify2.herokuapp.com">
+<meta property="og:url" content="https://agrify2.herokuapp.com/sign-up" />
 </svelte:head>
 <div id="root">
   <div>
