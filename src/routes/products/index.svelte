@@ -75,7 +75,7 @@ const switchCategory = (category) => {
                       ><div class="produceItem">
                         <div class="produceImg">
                           <img
-                            src="{product.images[0]}"
+                            src="{product.images.featured_image}"
                             alt=""
                           /><svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ const switchCategory = (category) => {
                             /></svg
                           >
                         </div>
-                        <div class="produceTitle">{product.name}</div>
+                        <div class="produceTitle">{product.produce_name}</div>
                         <div class="produceDescription">
                           {product.description}
                         </div>

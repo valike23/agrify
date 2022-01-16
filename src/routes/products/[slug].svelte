@@ -20,12 +20,43 @@
 <script lang="ts">
   import BagNav from "../../components/BagNav.svelte";
   import Footer from "../../components/Footer.svelte";
+  import type { Iproduct } from "../../Model/application";
 
-  export let product;
-  let amount = 1;
-  $: subTotal = product.price * amount;
+  export let product: Iproduct;
+  let quantity = 1;
+  
+  let reviewStars = 0;
+  product.reviews.forEach((e) => {
+    reviewStars = (reviewStars + e.stars) as unknown as number;
+  });
+  reviewStars = reviewStars / product.reviews.length;
+  let reviewArray = [];
+  for (let index = 0; index < reviewStars; index++) {
+    reviewArray.push({});
+  }
+  console.log(reviewStars);
+  let reviewOpen = true;
+  const toogleReview = () => {
+    console.log("twist", reviewOpen);
+    reviewOpen = !reviewOpen;
+    reviewOpen = reviewOpen;
+  };
+  let farmOpen = true;
+  const toogleFarm = () => {
+    console.log("twist", farmOpen);
+    farmOpen = !farmOpen;
+    farmOpen = farmOpen;
+  };
 </script>
 
+<svelte:head>
+  <title>{product.produce_name}</title>
+  <meta property="og:title" content="{product.produce_name} Page" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="{product.images.featured_image}" />
+  <meta property="og:site" content="https://agrify2.herokuapp.com" />
+  <meta property="og:url" content="https://agrify2.herokuapp.com/product/${product._id}" />
+</svelte:head>
 <div id="root">
   <div>
     <BagNav />
@@ -57,47 +88,34 @@
             <div class="categoryItem">
               <div class="leftColunm">
                 <div class="categoryImg">
-                  <img
-                    src="{product.images[0]}"
-                    alt=""
-                  />
+                  <img src={product.images.featured_image} alt="" />
                 </div>
               </div>
               <div class="rightColunm">
-                <div class="categoryTitle">{product.name}</div>
+                <div class="categoryTitle">{product.produce_name}</div>
                 <div class="categoryDescription">
-                 {product.description}
+                  {product.description}
                 </div>
                 <div class="row">
                   <div class="review">
                     <div class="rating">
-                      <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 1024 1024"
-                        class="fillYellow"
-                        height="1em"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        ><path
-                          d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
-                        /></svg
-                      ><svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 1024 1024"
-                        class="fillYellow"
-                        height="1em"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        ><path
-                          d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
-                        /></svg
-                      >
+                      {#each reviewArray as item}
+                        <svg
+                          stroke="currentColor"
+                          fill="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 1024 1024"
+                          class="fillYellow"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                          ><path
+                            d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                          /></svg
+                        >
+                      {/each}
                     </div>
-                    <div>(1 customer review)</div>
+                    <div>({product.reviews.length} customer(s) review)</div>
                   </div>
                   <div class="imageLink">View Product Images</div>
                 </div>
@@ -117,21 +135,16 @@
                   >
                   <div class="imageSlider">
                     <img
-                      src="https://res.cloudinary.com/isaacoduh/image/upload/v1628011056/agrify/melon-seeds.svg"
+                      src={product.images.featured_image}
                       alt="Product"
-                    /><img
-                      src="https://res.cloudinary.com/isaacoduh/image/upload/v1628011056/agrify/melon-seeds.svg"
-                      alt="Product"
-                    />
+                    /><img src={product.images.image_1} alt="Product" />
                   </div>
                 </div>
                 <div class="row">
                   <div class="price">${product.price}<span>per gram</span></div>
                 </div>
                 <div class="row">
-                  <select class="quantity"
-                    ></select
-                  >
+                  <input type="number" bind:value="{quantity}" class="quantity" />
                 </div>
                 <div class="buttonRow">
                   <div class="buttonNormal green">Add to Bag</div>
@@ -161,7 +174,7 @@
                       ></tr
                     ><tr
                       ><td class="categoryCategory">Category :</td><td
-                        class="categoryCategoryInfo">Melon Seeds</td
+                        class="categoryCategoryInfo">{product.category}</td
                       ></tr
                     ><tr
                       ><td class="categoryBuyBy">Buy by</td><td
@@ -184,7 +197,9 @@
                       fill="currentColor"
                       stroke-width="0"
                       viewBox="0 0 448 512"
-                      class="dropdownIcon active"
+                      class:active={farmOpen}
+                      on:click={toogleFarm}
+                      class="dropdownIcon "
                       height="1em"
                       width="1em"
                       xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +208,11 @@
                       /></svg
                     >
                   </div>
-                  <div class="categoryFarmItem active">
+                  <div
+                    class:active={farmOpen}
+                    on:click={toogleFarm}
+                    class="categoryFarmItem "
+                  >
                     <div class="notice">* information not avaliable *</div>
                   </div>
                 </div>
@@ -207,7 +226,9 @@
                       fill="currentColor"
                       stroke-width="0"
                       viewBox="0 0 448 512"
-                      class="dropdownIcon active"
+                      class:active={reviewOpen}
+                      on:click={toogleReview}
+                      class="dropdownIcon "
                       height="1em"
                       width="1em"
                       xmlns="http://www.w3.org/2000/svg"
@@ -216,48 +237,47 @@
                       /></svg
                     >
                   </div>
-                  <div class="categoryReviewItem active">
-                    <div>
-                      <div class="rating">
-                        <div>
-                          <svg
-                            stroke="currentColor"
-                            fill="currentColor"
-                            stroke-width="0"
-                            viewBox="0 0 1024 1024"
-                            class="fillYellow"
-                            height="1em"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path
-                              d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
-                            /></svg
-                          ><svg
-                            stroke="currentColor"
-                            fill="currentColor"
-                            stroke-width="0"
-                            viewBox="0 0 1024 1024"
-                            class="fillYellow"
-                            height="1em"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><path
-                              d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
-                            /></svg
-                          >
+                  <div class:active={reviewOpen} class="categoryReviewItem ">
+                    {#each product.reviews as item}
+                      <div>
+                        <div class="rating">
+                          <div>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 1024 1024"
+                              class="fillYellow"
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                              ><path
+                                d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                              /></svg
+                            ><svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              stroke-width="0"
+                              viewBox="0 0 1024 1024"
+                              class="fillYellow"
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                              ><path
+                                d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                              /></svg
+                            >
+                          </div>
+                        </div>
+                        <div class="name">{item.name}</div>
+                        <div class="reviewTitle">{item.title}</div>
+                        <div class="reviewContent">
+                          {item.description}
                         </div>
                       </div>
-                      <div class="name">Jane Doe</div>
-                      <div class="reviewTitle">Amazing Melons!!</div>
-                      <div class="reviewContent">
-                        Bibendum in varius rhoncus sit pellentesque pharetra
-                        elit. Commodo amet maecenas in quam dolor id ornare nisi
-                        adipiscing. Pellentesque non eu auctor amet, ullamcorper
-                        leo, metus, ac elementum.
-                      </div>
-                      <div class="viewMore">
-                        <a href="/reviews">view more</a>
-                      </div>
+                    {/each}
+                    <div class="viewMore">
+                      <a href="/reviews">view more</a>
                     </div>
                   </div>
                 </div>
@@ -272,7 +292,16 @@
 </div>
 
 <style>
-  #cars {
-    width: 80px;
-  }
+ 
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 </style>

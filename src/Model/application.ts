@@ -1,11 +1,25 @@
+interface IproductImage {
+    featured_image?: string;
+    image_1?: string;
+    image_2?: string;
+}
+export interface Ireview {
+    name?: string;
+    title?: string;
+    description?: string;
+    stars?: number;
+}
+
 export interface Iproduct {
     _id?: any;
-    name?: string;
-    images?: string[];
+    produce_name?: string;
     createdDate?: Date;
     description?: string;
     price?: number ;//price is in dollars conversion is done dynamically;
     category?: string;
+    images?: IproductImage;
+    reviews?: Ireview[]
+
 
 }
 
