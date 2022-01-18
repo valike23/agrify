@@ -18,7 +18,8 @@ export interface Iproduct {
     price?: number ;//price is in dollars conversion is done dynamically;
     category?: string;
     images?: IproductImage;
-    reviews?: Ireview[]
+    reviews?: Ireview[];
+    quantity?: number;
 
 
 }
@@ -28,4 +29,10 @@ export interface Iuser {
     _id?: any;
     email?: string;
     password?: string;
+}
+
+export interface Icart {
+    email?: string;
+    products?: Iproduct[];
+    _id?: any;
 }

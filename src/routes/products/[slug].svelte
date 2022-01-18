@@ -21,10 +21,11 @@
   import BagNav from "../../components/BagNav.svelte";
   import Footer from "../../components/Footer.svelte";
   import type { Iproduct } from "../../Model/application";
-
+  import { check_for_session, handleNotification } from "../../Model/browserFunctions";
+  import { goto } from "@sapper/app";
   export let product: Iproduct;
   let quantity = 1;
-  
+
   let reviewStars = 0;
   product.reviews.forEach((e) => {
     reviewStars = (reviewStars + e.stars) as unknown as number;
@@ -47,17 +48,55 @@
     farmOpen = !farmOpen;
     farmOpen = farmOpen;
   };
+  const addToCart = async () => {
+    let data = await check_for_session(location, false);
+    if (data) {
+      //save cart
+      let myProduct = product;
+      myProduct.quantity = quantity;
+    } else {
+      console.log("not logged in");
+      if (localStorage.getItem("cart")) {
+        let products = JSON.parse(
+          localStorage.getItem("cart")
+        ) as unknown as Iproduct[];
+        let myProduct = product;
+        myProduct.quantity = quantity;
+        let isExist = false;
+        products.forEach((element) => {
+          if (element._id == myProduct._id) isExist = true;
+        });
+        if (isExist) {
+        } else {
+          products.push(myProduct);
+          localStorage.setItem("cart", JSON.stringify(products));
+          goto("/products/cart");
+        }
+      } else {
+        let products: Iproduct[] = [];
+        let myProduct = product;
+        myProduct.quantity = quantity;
+        products.push(myProduct);
+          localStorage.setItem("cart", JSON.stringify(products));
+          handleNotification(`${product.produce_name} have been added to cart`, window, 'success', 'OK');
+          goto("/products/cart");
+      }
+    }
+  };
 </script>
 
 <svelte:head>
   <title>{product.produce_name}</title>
   <meta property="og:title" content="{product.produce_name} Page" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="{product.images.featured_image}" />
+  <meta property="og:image" content={product.images.featured_image} />
   <meta property="og:site" content="https://agrify2.herokuapp.com" />
-  <meta name="description" content="{product.description}">
-  <meta property="og:description" content="{product.description}">
-  <meta property="og:url" content="https://agrify2.herokuapp.com/product/{product._id}" />
+  <meta name="description" content={product.description} />
+  <meta property="og:description" content={product.description} />
+  <meta
+    property="og:url"
+    content="https://agrify2.herokuapp.com/product/{product._id}"
+  />
 </svelte:head>
 <div id="root">
   <div>
@@ -146,10 +185,12 @@
                   <div class="price">${product.price}<span>per gram</span></div>
                 </div>
                 <div class="row">
-                  <input type="number" bind:value="{quantity}" class="quantity" />
+                  <input type="number" bind:value={quantity} class="quantity" />
                 </div>
                 <div class="buttonRow">
-                  <div class="buttonNormal green">Add to Bag</div>
+                  <div on:click={addToCart} class="buttonNormal green">
+                    Add to Bag
+                  </div>
                   <div class="discountPrice" />
                   <a href="/contact-suplier/61097cca701a2600158278f4"
                     ><div class="buttonNormal light">Make Enquiry</div></a
@@ -294,16 +335,15 @@
 </div>
 
 <style>
- 
   /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 </style>
