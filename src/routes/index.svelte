@@ -57,7 +57,7 @@ export let products: Iproduct[];
 							<buttton class="buttonNormal white">Shop Agrify</buttton>
 						</a>
 					</div>
-				</div><img class="splashImage" src="https://www.agrify.africa/assets/landing.svg" alt="">
+				</div><img class="splashImage" src="assets/landing.svg" alt="">
 				<div class="animatedTextDivider">
 					<div class="scroll-left">
 						<div class="text-scroller">
@@ -180,6 +180,7 @@ export let products: Iproduct[];
 										</div>
 									</a></div>
 								<div class="produceItemWrapper"><a 
+									rel="external"
 										href="/products/{products[3]._id}">
 										<div class="produceItem">
 											<div class="produceImg"><img
@@ -200,7 +201,7 @@ export let products: Iproduct[];
 									</a></div>
 							</div>
 						</div>
-					</div><a href="/products">
+					</div><a rel="external" href="/products">
 						<buttton class="buttonNormal green">See all Produce</buttton>
 					</a>
 				</div>
@@ -210,7 +211,7 @@ export let products: Iproduct[];
 					<h1>Sourced from the best farms </h1>
 					<p>All produce are sourced from vetted and certified suppliers, so you can trust that you’re
 						getting the cream of the crops. If you’d like to sell your produce on Agrify, you can get in
-						touch with us.</p><img class="splashImage" src="https://www.agrify.africa/assets/landing2.svg" alt="">
+						touch with us.</p><img class="splashImage" src="assets/landing2.svg" alt="">
 				</div>
 			</div>
 			<div class="fpSection S3">
@@ -218,7 +219,7 @@ export let products: Iproduct[];
 					<h1>Send and Receive payments in fiat or crypto </h1>
 					<p>We use crypto to ensure that payments are processed and delivered speedily. You can then
 						decide to convert your payment to a cryptocurrency or fiat currency of your choice.</p><img
-						class="splashImage" src="https://www.agrify.africa/assets/landing3.svg" alt="">
+						class="splashImage" src="assets/landing3.svg" alt="">
 				</div>
 			</div>
 			<div class="fpSection S4">
@@ -230,7 +231,7 @@ export let products: Iproduct[];
 							with Agriculture, by employing innovative technology like blockchain and gaming to make
 							it more engaging, entertaining and interesting.</p>
 						<div class="buttonLarge buttonWhite" href="#section">Agrify Affliate</div>
-					</div><img class="splashImage" src="https://www.agrify.africa/assets/landing4.svg" alt="">
+					</div><img class="splashImage" src="assets/landing4.svg" alt="">
 				</div>
 			</div>
 			<div class="fpSection S5">
@@ -244,30 +245,30 @@ export let products: Iproduct[];
 						</ul>
 					</div>
 					<div class="box1"></div>
-					<div class="box2"></div><img class="splashImage" src="https://www.agrify.africa/assets/landing5.svg" alt="">
+					<div class="box2"></div><img class="splashImage" src="assets/landing5.svg" alt="">
 				</div>
 			</div>
 			<div class="fpSection S6">
 				<div class="contentWrapper frontpage">
 					<h3>We’re on a mission to boost exports by connecting <br> <span class="textBlack">certified
 							Agric product and service providers in Africa,</span><br> with the World.</h3><img
-						class="splashImage" src="https://www.agrify.africa/assets/landing6.svg" alt="">
+						class="splashImage" src="assets/landing6.svg" alt="">
 				</div>
 			</div>
 		</div>
 		<div class="footer">
 			<div class="footerContainer">
 				<div class="contentWrapper footerWrapper">
-					<div class="footerLogo"><img src="https://www.agrify.africa/assets/logo.svg" alt=""></div>
+					<div class="footerLogo"><img src="assets/logo.svg" alt=""></div>
 					<div class="colunm 1">
-						<h5 class="textGreen">Products</h5><a class="menuItem" href="/">
+						<h5 class="textGreen">Products</h5><a rel="external" class="menuItem" href="/">
 							<p>Agrify</p>
-						</a><a class="menuItem" href="/agrify-affiliate">
+						</a><a rel="external" class="menuItem" href="/agrify-affiliate">
 							<p>Agrify Affiliate</p>
 						</a>
 					</div>
 					<div class="colunm 2">
-						<h5 class="textGreen">Company</h5><a class="menuItem" href="/about">
+						<h5 class="textGreen">Company</h5><a rel="external" class="menuItem" href="/about">
 							<p>About</p>
 						</a><a class="menuItem" href="">
 							<p>Privacy Policy</p>
@@ -276,7 +277,7 @@ export let products: Iproduct[];
 						</a>
 					</div>
 					<div class="colunm 3">
-						<h5 class="textGreen">Support</h5><a class="menuItem" href="/faq">
+						<h5 class="textGreen">Support</h5><a rel="external" class="menuItem" href="/faq">
 							<p>How does it work</p>
 						</a><a class="menuItem" href="">
 							<p>Contact Us</p>
