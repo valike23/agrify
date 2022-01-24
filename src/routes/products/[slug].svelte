@@ -70,7 +70,7 @@
         } else {
           products.push(myProduct);
           localStorage.setItem("cart", JSON.stringify(products));
-          goto("/products/cart");
+         location.href = "/products/cart";
         }
       } else {
         let products: Iproduct[] = [];
@@ -79,7 +79,7 @@
         products.push(myProduct);
           localStorage.setItem("cart", JSON.stringify(products));
           handleNotification(`${product.produce_name} have been added to cart`, window, 'success', 'OK');
-          goto("/products/cart");
+          location.href ="/products/cart";
       }
     }
   };
