@@ -58,7 +58,7 @@ const switchCategory = (category) => {
                 </div>
                 <div class="requestProduce">
                   <p>Can't find what you need?</p>
-                  <a href="/products/request"><button>Request for Produce</button></a>
+                  <a rel="external" href="/products/request"><button>Request for Produce</button></a>
                 </div>
               </div>
               <div class="filter">
@@ -71,7 +71,7 @@ const switchCategory = (category) => {
                 <div class="products colunm4">
                 {#each activeProducts as product}
                 <div class="produceItemWrapper">
-                    <a  href="{'/products/' + product._id }"
+                    <a rel="external"  href="{'/products/' + product._id }"
                       ><div class="produceItem">
                         <div class="produceImg">
                           <img
@@ -106,7 +106,7 @@ const switchCategory = (category) => {
                 <div class="productFooter">
                   <p>
                     Can’t find your desired produce? <br /> You can
-                    <span> <a href="products/request">Request for produce</a>  </span>
+                    <span> <a rel="external" href="products/request">Request for produce</a>  </span>
                     here
                     <span class="icon"
                       ><svg
