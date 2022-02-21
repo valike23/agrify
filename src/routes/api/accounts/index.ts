@@ -53,7 +53,7 @@ export async function put(req, res) {
                 req.session.user = adminResult;
 
                 //return response
-                res.json({message: 'success', data: req.session});
+                res.json({message: 'success', data: req.session.user});
             }
             else  {
                 res.json({message: 'username or password incorrect', data: {}})
