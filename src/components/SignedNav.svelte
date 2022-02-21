@@ -1,4 +1,6 @@
 <script lang="ts">
+import axios from "axios";
+
 import { onMount } from "svelte";
 import type { Iuser } from "../Model/application";
 
@@ -12,6 +14,21 @@ import type { Iuser } from "../Model/application";
      user = JSON.parse(sessionStorage.getItem('user'));
 
   })
+  let signout =async ()=>{
+   try {
+    let sign = await axios.patch(`api/accounts`);
+    if(sign){
+      sessionStorage.clear();
+      location.href = '/';
+      
+    }
+   } catch (error) {
+    sessionStorage.clear();
+      location.href = '/';
+   }
+   
+
+  }
 </script>
 <div class="header">
   <div class="navContainer">
@@ -48,7 +65,7 @@ import type { Iuser } from "../Model/application";
       <div class="buttons">
         <div class="User">
           <li>
-            <div class="greeting">
+            <div class="greeting"  on:click="{toogleDrop}">
               Hello {user.userName}<svg
               on:click="{toogleDrop}"
                 stroke="currentColor"
@@ -92,7 +109,7 @@ import type { Iuser } from "../Model/application";
             </li>
             <li><a href="/about">Account</a></li>
             <li><a href="/order">Orders</a></li>
-            <li>Sign Out</li>
+            <li on:click="{signout}">Sign Out</li>
           </ul>
           
            {/if}
