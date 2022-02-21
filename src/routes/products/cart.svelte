@@ -8,8 +8,10 @@ import { onMount } from "svelte";
 import type { Iproduct } from "../../Model/application";
 import { check_for_session } from "../../Model/browserFunctions";
 import Fluidcoins from '@fluidcoins/pay.js';
+import SignedNav from "../../components/SignedNav.svelte";
     let products: Iproduct[] = [];
     let subTotal = 0;
+    let isLooggedin = false;
     $: {
         products.forEach((e)=>{
             subTotal = subTotal + e.quantity * e.price;
@@ -20,6 +22,8 @@ import Fluidcoins from '@fluidcoins/pay.js';
     onMount(async ()=>{
         let data = await check_for_session(location, false);
       if(data) {
+        isLooggedin = true;
+        alert();
           //retrieve cart from the server
           let data = await axios.get('api/products/cart');
           let res = data.data;
@@ -65,7 +69,11 @@ import Fluidcoins from '@fluidcoins/pay.js';
 
 <div id="root">
     <div>
-        <BagNav />
+        {#if isLooggedin}
+        <SignedNav/>
+      {:else}
+      <BagNav />
+      {/if}
 
         <div class="mainContent">
             <div class="contentWrapper cartPage">

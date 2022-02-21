@@ -23,6 +23,8 @@
   import type { Iproduct } from "../../Model/application";
   import { check_for_session, handleNotification } from "../../Model/browserFunctions";
   import { goto } from "@sapper/app";
+import { onMount } from "svelte";
+import SignedNav from "../../components/SignedNav.svelte";
   export let product: Iproduct;
   let quantity = 1;
 
@@ -42,6 +44,7 @@
     reviewOpen = !reviewOpen;
     reviewOpen = reviewOpen;
   };
+  let isLooggedin = false;
   let farmOpen = true;
   const toogleFarm = () => {
     console.log("twist", farmOpen);
@@ -83,6 +86,14 @@
       }
     }
   };
+  onMount(()=>{
+    if(sessionStorage.getItem('user')){
+      isLooggedin = true;
+    }
+    else{
+      isLooggedin = false;
+    }
+  })
 </script>
 
 <svelte:head>
@@ -100,7 +111,11 @@
 </svelte:head>
 <div id="root">
   <div>
+    {#if isLooggedin}
+      <SignedNav/>
+    {:else}
     <BagNav />
+    {/if}
     <div class="mainContent">
       <div class="contentWrapper categoryPage">
         <div class="sectionTop">
@@ -192,7 +207,7 @@
                     Add to Bag
                   </div>
                   <div class="discountPrice" />
-                  <a href="/contact-suplier/61097cca701a2600158278f4"
+                  <a href="/contact-suplier/{product._id}"
                     ><div class="buttonNormal light">Make Enquiry</div></a
                   >
                 </div>

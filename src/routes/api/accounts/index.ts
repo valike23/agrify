@@ -38,8 +38,9 @@ export async function put(req, res) {
     try {
         console.log(req.fields.body);
         let data: any = JSON.parse(req.fields.body);
+        console.log(data);
         let adminResult: any = await mongoUser.getFirstMatch('users',{"email": data.email});
-       
+       console.log(adminResult);
       
         if(adminResult.email) {
             let test = await handle_respond(adminResult, data.password);

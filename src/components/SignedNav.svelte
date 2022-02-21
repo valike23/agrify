@@ -1,3 +1,9 @@
+<script>
+  let showDrop = false;
+  let toogleDrop = ()=>{
+    showDrop = !showDrop;
+  }
+</script>
 <div class="header">
   <div class="navContainer">
     <div class="contentWrapper navWrapper">
@@ -27,7 +33,7 @@
         <div class="tabs">
           <a href="/products"><p>Explore</p></a><a href="/myitems"
             ><p>Orders</p></a
-          ><a href="/cart"><p>Bag</p></a>
+          ><a href="/products/cart"><p>Bag</p></a>
         </div>
       </div>
       <div class="buttons">
@@ -35,6 +41,7 @@
           <li>
             <div class="greeting">
               Hello User<svg
+              on:click="{toogleDrop}"
                 stroke="currentColor"
                 fill="currentColor"
                 stroke-width="0"
@@ -47,36 +54,39 @@
                 /></svg
               >
             </div>
-            <ul class="menu">
-              <li>
-                0x5094...C15CF <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  class="copyicon"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                  ><path
-                    d="M20,2H10C8.897,2,8,2.897,8,4v4H4c-1.103,0-2,0.897-2,2v10c0,1.103,0.897,2,2,2h10c1.103,0,2-0.897,2-2v-4h4 c1.103,0,2-0.897,2-2V4C22,2.897,21.103,2,20,2z M4,20V10h10l0.002,10H4z M20,14h-4v-4c0-1.103-0.897-2-2-2h-4V4h10V14z"
-                  /></svg
-                >
-              </li>
-              <li class="walletWidget">
-                <div class="walletInfo">
-                  <div class="img" />
-                  <div class="infoText">
-                    <p>Balance</p>
-                    <p class="balance">1.34 ETH</p>
-                  </div>
+           {#if showDrop}
+           <ul class="menu">
+            <li>
+              0x5094...C15CF <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                class="copyicon"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                ><path
+                  d="M20,2H10C8.897,2,8,2.897,8,4v4H4c-1.103,0-2,0.897-2,2v10c0,1.103,0.897,2,2,2h10c1.103,0,2-0.897,2-2v-4h4 c1.103,0,2-0.897,2-2V4C22,2.897,21.103,2,20,2z M4,20V10h10l0.002,10H4z M20,14h-4v-4c0-1.103-0.897-2-2-2h-4V4h10V14z"
+                /></svg
+              >
+            </li>
+            <li class="walletWidget">
+              <div class="walletInfo">
+                <div class="img" />
+                <div class="infoText">
+                  <p>Balance</p>
+                  <p class="balance">1.34 ETH</p>
                 </div>
-                <div class="footer">View in wallet</div>
-              </li>
-              <li><a href="/about">Account</a></li>
-              <li><a href="/order">Orders</a></li>
-              <li>Sign Out</li>
-            </ul>
+              </div>
+              <div class="footer">View in wallet</div>
+            </li>
+            <li><a href="/about">Account</a></li>
+            <li><a href="/order">Orders</a></li>
+            <li>Sign Out</li>
+          </ul>
+          
+           {/if}
           </li>
         </div>
         <svg
