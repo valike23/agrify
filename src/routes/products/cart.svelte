@@ -23,7 +23,6 @@
     let data = sessionStorage.getItem("user");
     if (data) {
       isLooggedin = true;
-      alert();
       //retrieve cart from the server
       let data = await axios.get("api/products/cart");
       let res = data.data;
