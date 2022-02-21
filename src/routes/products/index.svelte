@@ -12,7 +12,12 @@
 </script>
 
 <script lang="ts">
+import { onMount } from "svelte";
+
+import BagNav from "../../components/BagNav.svelte";
+
 import Nav from "../../components/Nav.svelte";
+import SignedNav from "../../components/SignedNav.svelte";
 import type { Iproduct } from "../../Model/application";
 export let products: Iproduct[] ;
 let activeProducts = products;
@@ -28,6 +33,15 @@ let activeCurrency = currencies[0];
 const switchCurrency = (currency) => {
   activeCurrency = currency;
 }
+onMount(()=>{
+    if(sessionStorage.getItem('user')){
+      isLooggedin = true;
+    }
+    else{
+      isLooggedin = false;
+    }
+  })
+let isLooggedin = false;
 const switchCategory = (category) => {
   activeCategory = category;
   if(category == 'All'){
@@ -46,7 +60,11 @@ const switchCategory = (category) => {
 </svelte:head>
 <div id="root">
     <div>
-    <Nav/>
+      {#if isLooggedin}
+      <SignedNav/>
+    {:else}
+    <BagNav />
+    {/if}
         <div class="mainContent">
             <div class="contentWrapper productsPage">
               <div class="noticesWrapper">

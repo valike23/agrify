@@ -1,8 +1,17 @@
-<script>
+<script lang="ts">
+import { onMount } from "svelte";
+import type { Iuser } from "../Model/application";
+
+
   let showDrop = false;
   let toogleDrop = ()=>{
     showDrop = !showDrop;
   }
+  let user: Iuser ={};
+  onMount(()=>{
+     user = JSON.parse(sessionStorage.getItem('user'));
+
+  })
 </script>
 <div class="header">
   <div class="navContainer">
@@ -40,7 +49,7 @@
         <div class="User">
           <li>
             <div class="greeting">
-              Hello User<svg
+              Hello {user.userName}<svg
               on:click="{toogleDrop}"
                 stroke="currentColor"
                 fill="currentColor"
