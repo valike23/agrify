@@ -74,3 +74,13 @@ export async function put(req, res) {
         }
     }
 }
+
+export function patch(req, res){
+    try {
+        delete(req.session.user);
+        res.json({msg: 'done'})
+    } catch (error) {
+        console.log(error);
+        res.status(503).json(error);
+    }
+}
