@@ -3,12 +3,12 @@
 
   import { onMount } from "svelte";
 
-  import BagNav from "../../components/BagNav.svelte";
   import Footer from "../../components/Footer.svelte";
   import type { Iproduct } from "../../Model/application";
   import { check_for_session } from "../../Model/browserFunctions";
   import Fluidcoins from "@fluidcoins/pay.js";
   import SignedNav from "../../components/SignedNav.svelte";
+import Nav from "../../components/Nav.svelte";
   let products: Iproduct[] = [];
   let subTotal = 0;
   let isLooggedin = false;
@@ -53,11 +53,11 @@
     console.log(e);
   };
   const payLoad = (e) => {
-    alert("loaded");
+ 
     console.log(e);
   };
   const pay = () => {
-    alert();
+ 
     let fluid = new Fluidcoins({
       key: "pk_test_c7349cfd6f1f4babbb8a6e9dc5f23e40",
       amount: subTotal * 414.5 * 100,
@@ -80,7 +80,7 @@
     {#if isLooggedin}
       <SignedNav />
     {:else}
-      <BagNav />
+      <Nav />
     {/if}
 
     <div class="mainContent">

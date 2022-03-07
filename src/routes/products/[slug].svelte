@@ -18,13 +18,13 @@
 </script>
 
 <script lang="ts">
-  import BagNav from "../../components/BagNav.svelte";
   import Footer from "../../components/Footer.svelte";
   import type { Iproduct } from "../../Model/application";
   import { check_for_session, handleNotification } from "../../Model/browserFunctions";
   import { goto } from "@sapper/app";
 import { onMount } from "svelte";
 import SignedNav from "../../components/SignedNav.svelte";
+import Nav from "../../components/Nav.svelte";
   export let product: Iproduct;
   let quantity = 1;
 
@@ -114,7 +114,7 @@ import SignedNav from "../../components/SignedNav.svelte";
     {#if isLooggedin}
       <SignedNav/>
     {:else}
-    <BagNav />
+    <Nav />
     {/if}
     <div class="mainContent">
       <div class="contentWrapper categoryPage">

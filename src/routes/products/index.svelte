@@ -63,7 +63,7 @@ const switchCategory = (category) => {
       {#if isLooggedin}
       <SignedNav/>
     {:else}
-    <BagNav />
+    <Nav />
     {/if}
         <div class="mainContent">
             <div class="contentWrapper productsPage">
