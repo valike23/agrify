@@ -181,6 +181,8 @@ const toggleNav =()=>{
               <a href="/myitems"><p>my orders</p></a><a href="/myitems"
                 ><p>Agrify Affliate</p></a
               ><a href="/products"><p>Shop Agrify</p></a>
+              <!-- svelte-ignore a11y-missing-attribute -->
+              <a on:click="{signout}"><p>Sign Out</p></a>
             </div>
           </div>
         </div>
