@@ -178,7 +178,7 @@ const toggleNav =()=>{
               />
             </div>
             <div class="tabs">
-              <a href="/about"><p>my orders</p></a><a href="/myitems"
+              <a href="/myitems"><p>my orders</p></a><a href="/myitems"
                 ><p>Agrify Affliate</p></a
               ><a href="/products"><p>Shop Agrify</p></a>
             </div>
