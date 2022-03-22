@@ -7,7 +7,7 @@ import axios from "axios";
   import {goto} from '@sapper/app';
 import { onMount } from "svelte";
   let user: Iuser = {};
-  let textContent = "Sign-in to your account";
+  let textContent = "Sign-in";
   let win: any = {};
   const submit = async () => {
     console.log(user);
@@ -25,7 +25,7 @@ import { onMount } from "svelte";
       let data = await axios.put("api/accounts", form);
       let res = data.data;
       if (res.message != "success") {
-       textContent = "Sign-in to your account";
+       textContent = "Sign-in";
         win.Sweetalert2({
           text: "Email or Password Incorrect",
           
@@ -33,7 +33,7 @@ import { onMount } from "svelte";
           title: "Error!!!",
         });
       } else {
-        textContent = "Sign-in to your account"
+        textContent = "Sign-in"
         win
           .Sweetalert2({
             text: "Sign In was successful",
@@ -47,7 +47,7 @@ import { onMount } from "svelte";
       }
       console.log(res);
     } catch (error) {
-      textContent = "Sign-in to your account";
+      textContent = "Sign-in";
       console.log(error);
       win.Sweetalert2({
         text: "Something went wrong",
@@ -84,7 +84,7 @@ import { onMount } from "svelte";
           <div class="footer">
             <div class="">
               <input
-                disabled={textContent != "Sign-in to your account"}
+                disabled={textContent != "Sign-in"}
                 class="buttonSmall"
                 id="btn"
                 type="submit"
