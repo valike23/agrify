@@ -1,6 +1,6 @@
 <script lang="ts">
   import axios from "axios";
-
+import {goto} from "@sapper/app";
   import { onMount } from "svelte";
   import type Stripe from 'stripe';
   import {loadStripe} from '@stripe/stripe-js';
@@ -38,7 +38,9 @@
     }
   });
   const successMessage = () => {
-    alert();
+      
+    alert('successful');
+    goto('/myitems');
   };
   const errorPay = (e) => {
     alert("error");
@@ -225,7 +227,7 @@ let elements = stripe.elements( opts);
                 </div>
                 <div class="buttonRow">
                   <div>cancel order</div>
-                  <a href="/order-confirmed"
+                  <a on:click="{()=>{ switchTab('payment')}}"
                     ><div class="buttonNormal PL">Proceed to Payment</div></a
                   >
                 </div>
