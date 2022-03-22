@@ -50,7 +50,7 @@ import {goto} from "@sapper/app";
     console.log(e);
 
     alert('successful');
-    goto('/order-confirmed');
+    goto('/products/order-confirmed');
   };
   const switchTab =(tab: string) =>{
     view = tab;
