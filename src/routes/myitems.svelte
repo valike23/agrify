@@ -1,14 +1,11 @@
 <script>
-import Footer from "../components/Footer.svelte";
-import SignedNav from "../components/SignedNav.svelte";
-
-
+  import Footer from "../components/Footer.svelte";
+  import SignedNav from "../components/SignedNav.svelte";
 </script>
-
 
 <div id="root">
   <div>
-   <SignedNav/>
+    <SignedNav />
     <div class="mainContent">
       <div class="contentWrapper myItemsPage">
         <div class="noticesWrapper">
@@ -48,9 +45,9 @@ import SignedNav from "../components/SignedNav.svelte";
               />
             </div>
             <ul class="Tabs">
-              <li>All. </li>
-              <li>Completed. </li>
-              <li>Pending. </li>
+              <li>All.</li>
+              <li>Completed.</li>
+              <li>Pending.</li>
               <li>Cancelled</li>
             </ul>
           </div>
@@ -94,6 +91,6 @@ import SignedNav from "../components/SignedNav.svelte";
         </div>
       </div>
     </div>
-  <Footer/>
+    <Footer />
   </div>
 </div>
