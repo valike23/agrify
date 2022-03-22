@@ -89,6 +89,8 @@ let elements = stripe.elements( opts);
         handleNotification('you have to choose a payment method to continue', window, 'error', 'payment error');
     }
     else if(paymentMethod == 'stripe'){
+        handleNotification('payment screen for stripe is loading', window,'success','loading');
+       
         stripePay(500);
     }
     else if(paymentMethod == 'crypto'){
