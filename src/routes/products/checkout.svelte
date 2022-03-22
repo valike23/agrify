@@ -48,6 +48,9 @@ import {goto} from "@sapper/app";
   };
   const payLoad = (e) => {
     console.log(e);
+
+    alert('successful');
+    goto('/myitems');
   };
   const switchTab =(tab: string) =>{
     view = tab;
