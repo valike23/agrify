@@ -1,12 +1,13 @@
 <script lang="ts">
   import axios from "axios";
-
+import {goto} from "@sapper/app";
   import { onMount } from "svelte";
 
   import Footer from "../../components/Footer.svelte";
   import type { Iproduct } from "../../Model/application";
   import { check_for_session } from "../../Model/browserFunctions";
   import Fluidcoins from "@fluidcoins/pay.js";
+
   import SignedNav from "../../components/SignedNav.svelte";
 import Nav from "../../components/Nav.svelte";
   let products: Iproduct[] = [];
@@ -69,6 +70,9 @@ import Nav from "../../components/Nav.svelte";
     });
     fluid.open();
   };
+  const gotoCheckout =()=>{
+    goto('/products/checkout')
+  }
 </script>
 
 <svelte:head>
@@ -181,7 +185,9 @@ import Nav from "../../components/Nav.svelte";
             </div>
             <div class="buttonrow">
               <!-- svelte-ignore a11y-missing-attribute -->
-              <a on:click={pay}
+              <a on:click={()=>{
+                gotoCheckout()
+              }}
                 ><div class="buttonNormal">Continue to Checkout</div></a
               >
             </div>

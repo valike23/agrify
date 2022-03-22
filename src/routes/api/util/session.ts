@@ -7,3 +7,8 @@ export function get(req, res) {
         res.json(false)
     }
 }
+
+export function put(req, res){
+     req.session.user = req.query;
+     res.json('ok');
+}
